@@ -17,7 +17,7 @@ class FoodList extends StatelessWidget {
           final food = foods[i];
 
           return FoodWidget(
-            image: food['imageUrl'].toString(),
+            image: food['imageUrl'][0].toString(),
             title: food['title'].toString(),
             time: food['time'].toString(),
             price: food['price'].toStringAsFixed(2),

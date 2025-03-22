@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const CategoryRoute = require('./routes/categoryRoute')
 const RestaurantRoute = require('./routes/restaurantRoute')
 const FoodRoute = require('./routes/foodRoute')
+const RatingRoute = require('./routes/ratingRoute')
 const dotenv = require('dotenv');
 
 const app = express();
@@ -24,6 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/category", CategoryRoute)
 app.use("/api/restaurant", RestaurantRoute)
 app.use("/api/food", FoodRoute)
+app.use("/api/rating", RatingRoute)
 
 
 

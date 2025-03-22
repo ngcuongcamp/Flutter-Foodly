@@ -183,8 +183,10 @@ List<Map<String, dynamic>> foods = [
       {"id": 4, "title": "Cocoa", "price": "0.50"},
       {"id": 5, "title": "Sugar", "price": "0.50"}
     ],
-    "imageUrl":
-        ["https://images.pexels.com/photos/15455309/pexels-photo-15455309.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940","https://images.pexels.com/photos/15455309/pexels-photo-15455309.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"],
+    "imageUrl": [
+      "https://images.pexels.com/photos/15455309/pexels-photo-15455309.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      // "https://images.pexels.com/photos/15455309/pexels-photo-15455309.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    ],
     "__v": 0,
     "category": "6531209dbbe4998e90af3fef",
     "time": "35 min"
@@ -209,8 +211,10 @@ List<Map<String, dynamic>> foods = [
       {"id": 4, "title": "Black Pepper", "price": "0.50"},
       {"id": 5, "title": "Pasta", "price": "3.00"}
     ],
-    "imageUrl":
-        ["https://images.pexels.com/photos/4518844/pexels-photo-4518844.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940","https://images.pexels.com/photos/4518844/pexels-photo-4518844.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"],
+    "imageUrl": [
+      "https://images.pexels.com/photos/4518844/pexels-photo-4518844.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      // "https://images.pexels.com/photos/4518844/pexels-photo-4518844.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    ],
     "__v": 2,
     "category": "6531209dbbe4998e90af3fef",
     "time": "20 min"
@@ -235,8 +239,10 @@ List<Map<String, dynamic>> foods = [
       {"id": 4, "title": "Cherry Tomatoes", "price": "1.00"},
       {"id": 5, "title": "Vinaigrette", "price": "0.50"}
     ],
-    "imageUrl":
-        ["https://images.pexels.com/photos/1640773/pexels-photo-1640773.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940","https://images.pexels.com/photos/1640773/pexels-photo-1640773.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"],
+    "imageUrl": [
+      "https://images.pexels.com/photos/1640773/pexels-photo-1640773.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      // "https://images.pexels.com/photos/1640773/pexels-photo-1640773.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    ],
     "__v": 0,
     "category": "6531209dbbe4998e90af3fef",
     "time": "55 min"
@@ -259,8 +265,10 @@ List<Map<String, dynamic>> foods = [
       {"id": 2, "title": "Pepperoni", "price": "2.50"},
       {"id": 3, "title": "Ketch up", "price": "0.50"}
     ],
-    "imageUrl":
-        ["https://images.pexels.com/photos/18431672/pexels-photo-18431672.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940","https://images.pexels.com/photos/18431672/pexels-photo-18431672.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"],
+    "imageUrl": [
+      "https://images.pexels.com/photos/18431672/pexels-photo-18431672.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      // "https://images.pexels.com/photos/18431672/pexels-photo-18431672.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    ],
     "__v": 0,
     "category": "6531209dbbe4998e90af3fef",
     "time": "30 min"
@@ -285,8 +293,10 @@ List<Map<String, dynamic>> foods = [
       {"id": 4, "title": "Coconut Milk", "price": "1.50"},
       {"id": 5, "title": "Ice", "price": "0.50"}
     ],
-    "imageUrl":
-        ["https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940","https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"],
+    "imageUrl": [
+      "https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      // "https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    ],
     "__v": 0,
     "category": "6531209dbbe4998e90af3fef",
     "time": "25 min"
@@ -317,8 +327,10 @@ List<Map<String, dynamic>> foods = [
       {"id": 4, "title": "Pork", "price": "3.50"},
       {"id": 5, "title": "Barbecue Sauce", "price": "1.00"}
     ],
-    "imageUrl":
-        ["https://images.pexels.com/photos/18698239/pexels-photo-18698239.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940","https://images.pexels.com/photos/18698239/pexels-photo-18698239.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"],
+    "imageUrl": [
+      "https://images.pexels.com/photos/18698239/pexels-photo-18698239.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      // "https://images.pexels.com/photos/18698239/pexels-photo-18698239.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    ],
     "__v": 0,
     "category": "6531209dbbe4998e90af3fef",
     "time": "45 min"

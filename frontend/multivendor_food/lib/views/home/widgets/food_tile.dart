@@ -38,7 +38,7 @@ class FoodTile extends StatelessWidget {
                           height: 70.h,
                           width: 70.w,
                           child: Image.network(
-                            food["imageUrl"],
+                            food["imageUrl"][0],
                             fit: BoxFit.cover,
                           ),
                         ),
