@@ -66,7 +66,12 @@ module.exports = {
         const { product } = req.query.product
 
         try {
-            const existingRating = await Rating.findOne({ userId: req.user.id, product: product, ratingType: ratingType })
+            const existingRating = await Rating.findOne({
+                userId: req.user.id,
+                product: product,
+                ratingType: ratingType
+            })
+
             if (existingRating) {
                 req.status(200).json({ status: true, message: "You have already rated this restaurant" })
             }

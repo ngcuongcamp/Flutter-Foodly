@@ -1,6 +1,13 @@
 const router = require('express').Router();
 
-const RatingRoute = router.get('/',)
+const ratingController = require('../controllers/ratingController')
 
 
-module.exports = RatingRoute;
+router.post('/', ratingController.addRating)
+router.get('/', ratingController.checkUserRating)
+
+
+
+
+
+module.exports = router;

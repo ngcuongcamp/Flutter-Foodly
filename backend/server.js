@@ -4,11 +4,19 @@ const CategoryRoute = require('./routes/categoryRoute')
 const RestaurantRoute = require('./routes/restaurantRoute')
 const FoodRoute = require('./routes/foodRoute')
 const RatingRoute = require('./routes/ratingRoute')
+const AuthRoute = require('./routes/authRoute')
+const UserRoute = require('./routes/userRoute')
 const dotenv = require('dotenv');
 
-const app = express();
 dotenv.config()
+
+
+
+const app = express();
 const port = process.env.PORT || 6013
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 mongoose.connect(process.env.MONGOURL)
     .then(() => {
@@ -16,16 +24,16 @@ mongoose.connect(process.env.MONGOURL)
     }).catch((error) => {
         console.log('Error: ', error);
     })
+// const otp = generateOtp()
+// sendEmail()
 
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-
+app.use("/", AuthRoute)
+app.use("/api/users", UserRoute)
 app.use("/api/category", CategoryRoute)
 app.use("/api/restaurant", RestaurantRoute)
 app.use("/api/food", FoodRoute)
 app.use("/api/rating", RatingRoute)
+
 
 
 
