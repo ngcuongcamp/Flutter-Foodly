@@ -13,12 +13,12 @@ module.exports = {
             })
         }
 
-        const minPasswordLength = 8;
-        if (length(req.body.password) < minPasswordLength) {
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (!passwordRegex.test(req.body.password)) {
             return res.status(400).json({
                 status: false,
-                message: `Password must be at least ${minPasswordLength} characters long`
-            })
+                message: 'Password must be at least 8 characters long, include uppercase, lowercase, number, and special character'
+            });
         }
 
         try {
@@ -41,7 +41,7 @@ module.exports = {
             // SAVE USER 
             await newUser.save()
             // SEND OTP TO EMAIL
-            sendEmail(newUser.email, newUser.otp)
+            // sendEmail(newUser.email, newUser.otp)
 
             res.status(201).json({ status: true, message: "User created successfully!" })
         }
@@ -62,7 +62,7 @@ module.exports = {
         }
 
         const minPasswordLength = 8;
-        if (length(req.body.password) < minPasswordLength) {
+        if (req.body.password.length < minPasswordLength) {
             return res.status(400).json({
                 status: false,
                 message: `Password must be at least ${minPasswordLength} characters long`
@@ -88,7 +88,7 @@ module.exports = {
                 email: user.email,
             }, process.env.JWT_SECRET, { expiresIn: '21d' })
 
-            const { password, otp, ...others } = user.doc;
+            const { password, createdAt, updatedAt, __v, otp, ...others } = user._doc;
 
             res.status(200).json({ ...others, userToken });
 

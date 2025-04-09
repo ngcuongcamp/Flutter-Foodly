@@ -1,8 +1,12 @@
 const router = require('express').Router();
 const foodController = require('../controllers/foodController')
+const { verifyVendor } = require("../middlewares/verifyToken")
+
+
+
 
 // get all and new insert
-router.post("/", foodController.addFood)
+router.post("/", verifyVendor, foodController.addFood)
 router.get("/", foodController.getAllFoods)
 router.put('/:id', foodController.updateFood)
 router.delete('/delete/:id', foodController.deleteFood)
