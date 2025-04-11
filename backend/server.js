@@ -10,9 +10,7 @@ const AddressRoute = require('./routes/addressRoute')
 const CartRoute = require('./routes/cartRoute')
 const OrderRoute = require('./routes/orderRoute')
 const dotenv = require('dotenv');
-
 dotenv.config()
-
 
 
 const app = express();
@@ -40,8 +38,6 @@ app.use("/api/rating", RatingRoute)
 app.use("/api/address", AddressRoute)
 app.use("/api/cart", CartRoute)
 app.use("/api/order/", OrderRoute)
-
-
 
 
 app.listen(port, () => {

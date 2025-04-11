@@ -21,7 +21,10 @@ module.exports = {
             })
         }
         catch (error) {
-            res.status(500).json({ status: false, message: error.message })
+            res.status(500).json({
+                status: false,
+                message: error.message
+            })
         }
 
     },
@@ -35,7 +38,10 @@ module.exports = {
             })
         }
         catch (error) {
-            res.status(500).json({ status: false, message: error.message || error })
+            res.status(500).json({
+                status: false,
+                message: error.message
+            })
         }
 
     },
@@ -54,7 +60,10 @@ module.exports = {
             })
         }
         catch (error) {
-            res.status(500).json({ status: false, message: error.message || error })
+            res.status(500).json({
+                status: false,
+                message: error.message
+            })
         }
 
     },
@@ -67,7 +76,10 @@ module.exports = {
             })
         }
         catch (error) {
-            res.status(500).json({ status: false, message: error.message || error })
+            res.status(500).json({
+                status: false,
+                message: error.message
+            })
         }
     },
 
@@ -96,7 +108,10 @@ module.exports = {
             res.status(200).json({ status: true, message: "Getting random restaurant is successful.", data: randomRestaurant })
         }
         catch (error) {
-            res.status(500).json({ status: false, message: error.message || error })
+            res.status(500).json({
+                status: false,
+                message: error.message
+            })
         }
 
     },
@@ -124,7 +139,10 @@ module.exports = {
             res.status(200).json({ status: true, message: "Getting nearby restaurant is successful.", data: allNearbyRestaurants })
         }
         catch (error) {
-            res.status(500).json({ status: false, message: error.message || error })
+            res.status(500).json({
+                status: false,
+                message: error.message
+            })
         }
 
     },

@@ -22,7 +22,7 @@ module.exports = {
         catch (error) {
             res.status(500).json({
                 status: false,
-                message: error || error.message
+                message: error.message
             })
         }
     },
@@ -81,8 +81,8 @@ module.exports = {
         } catch (error) {
             res.status(500).json({
                 status: false,
-                message: error.message || error
-            });
+                message: error.message
+            })
         }
     },
 
@@ -105,7 +105,7 @@ module.exports = {
         catch (error) {
             res.status(500).json({
                 status: false,
-                message: error || error.message
+                message: error.message
             })
         }
     },
@@ -142,7 +142,7 @@ module.exports = {
         catch (error) {
             res.status(500).json({
                 status: false,
-                message: error || error.message
+                message: error.message
             })
         }
     },
@@ -177,8 +177,8 @@ module.exports = {
         } catch (error) {
             res.status(500).json({
                 status: false,
-                message: error.message || "Server error"
-            });
+                message: error.message
+            })
         }
     },
     updateTagsFood: async (req, res) => {
@@ -220,8 +220,8 @@ module.exports = {
         } catch (error) {
             res.status(500).json({
                 status: false,
-                message: error.message || error
-            });
+                message: error.message
+            })
         }
     },
 
@@ -236,7 +236,7 @@ module.exports = {
         catch (error) {
             res.status(500).json({
                 status: false,
-                message: error || error.message
+                message: error.message
             })
         }
     },
@@ -253,7 +253,7 @@ module.exports = {
         catch (error) {
             res.status(500).json({
                 status: false,
-                message: error || error.message
+                message: error.message
             })
         }
     },
@@ -285,7 +285,7 @@ module.exports = {
         catch (error) {
             res.status(500).json({
                 status: false,
-                message: error || error.message
+                message: error.message
             })
         }
     },
@@ -305,7 +305,10 @@ module.exports = {
             })
         }
         catch (error) {
-            res.status(500).json({ status: false, message: error.message || error })
+            res.status(500).json({
+                status: false,
+                message: error.message
+            })
         }
     },
     getFoodsByCategoryAndCode: async (req, res) => {
@@ -330,7 +333,10 @@ module.exports = {
             })
         }
         catch (error) {
-            res.status(500).json({ status: false, message: error.message || error })
+            res.status(500).json({
+                status: false,
+                message: error.message
+            })
         }
     },
     searchFood: async (req, res) => {
@@ -348,7 +354,10 @@ module.exports = {
             })
         }
         catch (error) {
-            res.status(500).json({ status: false, message: error.message || error })
+            res.status(500).json({
+                status: false,
+                message: error.message
+            })
         }
     },
     getRandomFoodsByCategoryAndCode: async (req, res) => {
@@ -383,7 +392,10 @@ module.exports = {
 
         }
         catch (error) {
-            res.status(500).json({ status: false, message: error.message || error })
+            res.status(500).json({
+                status: false,
+                message: error.message
+            })
         }
     }
 }

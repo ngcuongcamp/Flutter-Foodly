@@ -17,9 +17,9 @@ module.exports = {
         }
 
         catch (error) {
-            return res.status(500).json({
+            res.status(500).json({
                 status: false,
-                message: error.message || error
+                message: error.message
             })
         }
     },
@@ -36,9 +36,9 @@ module.exports = {
         }
 
         catch (error) {
-            return res.status(500).json({
+            res.status(500).json({
                 status: false,
-                message: error.message || error
+                message: error.message
             })
         }
     },
@@ -104,9 +104,9 @@ module.exports = {
         }
 
         catch (error) {
-            return res.status(500).json({
+            res.status(500).json({
                 status: false,
-                message: error.message || error
+                message: error.message
             })
         }
     },
@@ -116,9 +116,9 @@ module.exports = {
             res.status(200).json({ status: true, message: "User successfully deleted" })
         }
         catch (error) {
-            return res.status(500).json({
+            res.status(500).json({
                 status: false,
-                message: error.message || error
+                message: error.message
             })
         }
     },
@@ -154,9 +154,9 @@ module.exports = {
             }
         }
         catch (error) {
-            return res.status(500).json({
+            res.status(500).json({
                 status: false,
-                message: error.message || error
+                message: error.message
             })
         }
     },
@@ -186,9 +186,9 @@ module.exports = {
             })
         }
         catch (error) {
-            return res.status(500).json({
+            res.status(500).json({
                 status: false,
-                message: error.message || error
+                message: error.message
             })
         }
     }
