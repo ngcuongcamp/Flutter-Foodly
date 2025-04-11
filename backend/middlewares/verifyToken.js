@@ -44,7 +44,19 @@ const verifyTokenAndAuthorization = (req, res, next) => {
 
 
 const verifyAdmin = (req, res, next) => {
-
+    verifyToken(req, res, () => {
+        //  Admin Vendor 
+        if (req.user.userType === "Admin"
+        ) {
+            next();
+        }
+        else {
+            return res.status(403).json({
+                status: false,
+                message: 'You are not allowed access the resource'
+            })
+        }
+    })
 }
 const verifyVendor = (req, res, next) => {
     verifyToken(req, res, () => {

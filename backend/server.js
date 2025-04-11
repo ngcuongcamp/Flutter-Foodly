@@ -7,6 +7,8 @@ const RatingRoute = require('./routes/ratingRoute')
 const AuthRoute = require('./routes/authRoute')
 const UserRoute = require('./routes/userRoute')
 const AddressRoute = require('./routes/addressRoute')
+const CartRoute = require('./routes/cartRoute')
+const OrderRoute = require('./routes/orderRoute')
 const dotenv = require('dotenv');
 
 dotenv.config()
@@ -36,6 +38,8 @@ app.use("/api/restaurant", RestaurantRoute)
 app.use("/api/food", FoodRoute)
 app.use("/api/rating", RatingRoute)
 app.use("/api/address", AddressRoute)
+app.use("/api/cart", CartRoute)
+app.use("/api/order/", OrderRoute)
 
 
 

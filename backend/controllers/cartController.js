@@ -18,8 +18,9 @@ module.exports = {
             // nếu sản phẩm đã tồn tại 
             if (existingProduct) {
                 // cập nhật số lượng + tổng giá 
-                existingProduct.quantity += quantity
-                existingProduct.totalPrice += totalPrice * quantity
+                existingProduct.quantity += Number(quantity)
+                existingProduct.totalPrice += Number(totalPrice) * Number(quantity)
+                existingProduct.additives = additives
 
                 await existingProduct.save()
                 return res.status(201).json({
@@ -120,10 +121,35 @@ module.exports = {
         const userId = req.user.id;
         const id = req.params.id;
 
-
         try {
-            const count = await Cart.countDocuments({ userId: userId })
-            res.status(200).json({ status: true, count: count })
+            const cartItem = await Cart.findById(id)
+
+            if (cartItem) {
+                const count = await Cart.countDocuments({ userId: userId })
+                // calc giá của một sản phẩm = tổng giá / số lượng sản phẩm 
+                const productPrice = Number(cartItem.totalPrice) / Number(cartItem.quantity)
+
+                // nếu số lượng sản phẩm này có trong giỏ hàng lớn hơn 1 
+                if (cartItem.quantity > 1) {
+                    cartItem.quantity -= 1
+                    cartItem.totalPrice -= productPrice
+
+                    await cartItem.save()
+                    res.status(200).json({
+                        status: true,
+                        message: "Product quantity successfully decrement",
+                        count: count
+                    })
+                } else {
+                    await Cart.findOneAndDelete({ _id: id })
+                    res.status(200).json({ status: true, message: "Product successfully removed from cart" })
+                }
+            } else {
+                res.status(404).json({
+                    status: false,
+                    message: "Cart item not found"
+                })
+            }
         }
         catch (error) {
             res.status(500).json({
