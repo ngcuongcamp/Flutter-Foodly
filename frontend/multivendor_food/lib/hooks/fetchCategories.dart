@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:multivendor_food/constants/constants.dart';
 import 'package:multivendor_food/models/api_error_model.dart';
 import 'package:multivendor_food/models/hook_models/hook_result.dart';
@@ -16,9 +18,14 @@ FetchHook useFetchCategories() {
 
     Uri url = Uri.parse('$appBaseUrl/api/category/random');
     final response = await http.get(url);
+
     try {
       if (response.statusCode == 200) {
-        categoriesItems.value = categoriesModelFromJson(response.body);
+        final jsonResponse = json.decode(response.body);
+        final dataList = json.encode(jsonResponse['data']);
+
+        print(dataList);
+        categoriesItems.value = categoriesModelFromJson(dataList);
       } else {
         apiError.value = apiErrorModelFromJson(response.body);
       }
