@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:multivendor_food/common/app_style.dart';
 import 'package:multivendor_food/common/background_container.dart';
+import 'package:multivendor_food/common/shimmers/nearby_shimmer.dart';
 import 'package:multivendor_food/constants/constants.dart';
-import 'package:multivendor_food/constants/uidata.dart';
+import 'package:multivendor_food/hooks/fetch_all_restaurants.dart';
+import 'package:multivendor_food/models/restaurantsModel.dart';
 import 'package:multivendor_food/views/home/widgets/restaurant_title.dart';
 
-class AllNearbyRestaurants extends StatelessWidget {
+class AllNearbyRestaurants extends HookWidget {
   const AllNearbyRestaurants({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final hookResult = useFetchAllRestaurants("41007428");
+
+    List<RestaurantsModel> restaurantsList = hookResult.data;
+    final isLoading = hookResult.isLoading;
+    final error = hookResult.error;
+
     return Scaffold(
       backgroundColor: kSecondary,
       appBar: AppBar(
@@ -24,15 +33,17 @@ class AllNearbyRestaurants extends StatelessWidget {
         color: Colors.white,
         child: Padding(
           padding: EdgeInsets.all(12.h),
-          child: ListView(
-            // scrollDirection: Axis.horizontal,
-            children: List.generate(restaurants.length, (i) {
-              final restaurant = restaurants[i];
-              return RestaurantTile(
-                restaurant: restaurant,
-              );
-            }),
-          ),
+          child: isLoading
+              ? NearbyShimmer()
+              : ListView(
+                  // scrollDirection: Axis.horizontal,
+                  children: List.generate(restaurantsList.length, (i) {
+                    RestaurantsModel restaurant = restaurantsList[i];
+                    return RestaurantTile(
+                      restaurant: restaurant,
+                    );
+                  }),
+                ),
         ),
       ),
     );

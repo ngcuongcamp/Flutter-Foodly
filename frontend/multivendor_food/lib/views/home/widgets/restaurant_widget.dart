@@ -24,8 +24,6 @@ class RestaurantsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // print(
-    //     '${this.image}, ${this.logo}, ${this.title}, ${this.time}, ${this.rating}');
     return GestureDetector(
         onTap: onTap,
         child: Padding(

@@ -1,36 +1,40 @@
 import 'dart:convert';
 
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:http/http.dart' as http;
+
 import 'package:multivendor_food/constants/constants.dart';
 import 'package:multivendor_food/models/api_error_model.dart';
-import 'package:multivendor_food/models/hook_models/hook_result.dart';
 import 'package:multivendor_food/models/categories_model.dart';
-import 'package:http/http.dart' as http;
-import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:multivendor_food/models/hook_models/hook_result.dart';
 
-FetchHook useFetchCategories() {
-  final categoriesItems = useState<List<CategoriesModel>?>(null);
+FetchHook useAllFetchCategories() {
+  // final categoriesItems = useState<List<CategoriesModel>?>(null);
+  final categoriesItems = useState<List<CategoriesModel>?>([]);
   final isLoading = useState<bool>(false);
   final error = useState<Exception?>(null);
   final apiError = useState<ApiErrorModel?>(null);
 
   Future<void> fetchData() async {
     isLoading.value = true;
-
-    Uri url = Uri.parse('$appBaseUrl/api/category/random');
-    final response = await http.get(url);
-
     try {
-      if (response.statusCode == 200) {
-        final jsonResponse = json.decode(response.body);
-        final dataList = json.encode(jsonResponse['data']);
+      Uri url = Uri.parse('$appBaseUrl/api/category');
+      final response = await http.get(url);
+      final jsonResponse = json.decode(response.body);
 
-        print(dataList);
-        categoriesItems.value = categoriesModelFromJson(dataList);
+      if (response.statusCode == 200) {
+        if (jsonResponse['status'] == true && jsonResponse['data'] is List) {
+          categoriesItems.value = List<CategoriesModel>.from(
+            jsonResponse['data'].map((x) => CategoriesModel.fromJson(x)),
+          );
+        } else {
+          error.value = Exception('Invalid API response');
+        }
       } else {
         apiError.value = apiErrorModelFromJson(response.body);
       }
     } catch (e) {
-      error.value = e as Exception;
+      error.value = e is Exception ? e : Exception('Error: $e');
     } finally {
       isLoading.value = false;
     }

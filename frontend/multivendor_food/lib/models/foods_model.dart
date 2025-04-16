@@ -1,13 +1,12 @@
 import 'dart:convert';
 
-List<CategoriesModel> categoriesModelFromJson(String str) =>
-    List<CategoriesModel>.from(
-        json.decode(str).map((x) => CategoriesModel.fromJson(x)));
+List<FoodsModel> FoodsModelFromJson(List<dynamic> list) =>
+    list.map((x) => FoodsModel.fromJson(x)).toList();
 
-String categoriesModelToJson(List<CategoriesModel> data) =>
+String FoodsModelToJson(List<FoodsModel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class CategoriesModel {
+class FoodsModel {
   String id;
   String title;
   String time;
@@ -24,7 +23,7 @@ class CategoriesModel {
   List<Additive> additives;
   List<String> imageUrl;
 
-  CategoriesModel({
+  FoodsModel({
     required this.id,
     required this.title,
     required this.time,
@@ -42,8 +41,7 @@ class CategoriesModel {
     required this.imageUrl,
   });
 
-  factory CategoriesModel.fromJson(Map<String, dynamic> json) =>
-      CategoriesModel(
+  factory FoodsModel.fromJson(Map<String, dynamic> json) => FoodsModel(
         id: json["_id"],
         title: json["title"],
         time: json["time"],

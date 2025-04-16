@@ -1,8 +1,11 @@
 import 'dart:convert';
 
-List<RestaurantsModel> restaurantsModelFromJson(String str) =>
-    List<RestaurantsModel>.from(
-        json.decode(str).map((x) => RestaurantsModel.fromJson(x)));
+// List<RestaurantsModel> restaurantsModelFromJson(String str) =>
+//     List<RestaurantsModel>.from(
+//         json.decode(str).map((x) => RestaurantsModel.fromJson(x)));
+
+List<RestaurantsModel> restaurantsModelFromJson(List<dynamic> list) =>
+    list.map((x) => RestaurantsModel.fromJson(x)).toList();
 
 String restaurantsModelToJson(List<RestaurantsModel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));

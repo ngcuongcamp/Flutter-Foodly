@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:multivendor_food/common/app_style.dart';
 import 'package:multivendor_food/common/reusable_text.dart';
 import 'package:multivendor_food/constants/constants.dart';
+import 'package:multivendor_food/models/categories_model.dart';
 import 'package:multivendor_food/views/categories/category_page.dart';
 
 class CategoryTile extends StatelessWidget {
@@ -12,7 +13,7 @@ class CategoryTile extends StatelessWidget {
     required this.category,
   });
 
-  final dynamic category;
+  final CategoriesModel category;
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +29,12 @@ class CategoryTile extends StatelessWidget {
         radius: 18.r,
         backgroundColor: kGrayLight,
         child: Image.network(
-          category['imageUrl'],
+          category.imageUrl,
           fit: BoxFit.contain,
         ),
       ),
       title: ReusableText(
-        text: category['title'],
+        text: category.title,
         style: appStyle(
           12,
           kGray,
