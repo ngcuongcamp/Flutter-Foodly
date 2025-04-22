@@ -14,13 +14,11 @@ class Recommendations extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final hookResult = useFetchAllFoods();
+    final hookResult = useFetchAllFoods("41007428");
 
     List<FoodsModel> foodsList = hookResult.data;
     final isLoading = hookResult.isLoading;
     final error = hookResult.error;
-
-    print(hookResult.data);
 
     return Scaffold(
       backgroundColor: kSecondary,
@@ -40,12 +38,9 @@ class Recommendations extends HookWidget {
           child: isLoading
               ? FoodsListShimmer()
               : ListView(
-                  // scrollDirection: Axis.horizontal,
                   children: List.generate(foodsList.length, (i) {
                     FoodsModel food = foodsList[i];
-                    return FoodTile(
-                      food: food,
-                    );
+                    return FoodTile(food: food);
                   }),
                 ),
         ),

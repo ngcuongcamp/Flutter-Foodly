@@ -229,7 +229,7 @@ module.exports = {
         try {
             const foods = await Food.find()
 
-            res.status(201).json({
+            res.status(200).json({
                 status: true, message: 'Get all food data!', data: foods
             })
         }
@@ -284,6 +284,23 @@ module.exports = {
         }
         catch (error) {
             res.status(500).json({
+                status: false,
+                message: error.message
+            })
+        }
+    },
+    getAllFoodsByCode: async (req, res) => {
+        const code = req.params.code;
+        try {
+            const foodList = await Food.find({ code: code });
+            return res.status(200).json({
+                status: true,
+                message: "Get all foods by code successful",
+                data: foodList
+            })
+
+        } catch (error) {
+            return res.status(500).json({
                 status: false,
                 message: error.message
             })

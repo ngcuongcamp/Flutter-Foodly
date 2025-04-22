@@ -25,8 +25,13 @@ router.get('/search/:searchTitle', foodController.searchFood)
 router.get("/restaurant-foods/:restaurantId", foodController.getFoodsByRestaurant)
 router.get("/restaurant-foods/:categoryId/:code", foodController.getFoodsByCategoryAndCode)
 
+// get All foods by code
+router.get('/byCode/:code', foodController.getAllFoodsByCode)
+
 // get random
 router.get("/recommendation/:code", foodController.getRandomFood)
 router.get("/recommendation/:categoryId/:code", foodController.getRandomFoodsByCategoryAndCode)
+
+
 
 module.exports = router;
