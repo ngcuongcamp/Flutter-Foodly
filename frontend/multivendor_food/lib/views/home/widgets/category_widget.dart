@@ -20,8 +20,7 @@ class CategoryWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if (controller.categoryValue == category.id) {
-          // controller.updateCategory = '';
-          // controller.updateTitle = '';
+          controller.updateCategory = "";
         } else if (category.value == "more") {
           Get.to(() => const AllCategories(),
               transition: Transition.fadeIn,

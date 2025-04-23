@@ -28,7 +28,7 @@ class CustomAppBar extends StatelessWidget {
                   radius: 22.r,
                   backgroundColor: kSecondary,
                   backgroundImage: const NetworkImage(
-                      'https://images.pexels.com/photos/30999314/pexels-photo-30999314.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'),
+                      'https://res.cloudinary.com/dwy653wkg/image/upload/v1745400714/default_avatar_rmq7ob_c_crop_w_600_h_600_neq6kv.png'),
                 ),
                 Padding(
                   // padding: EdgeInsets.only(bottom: 6.h, left: 8.w),r

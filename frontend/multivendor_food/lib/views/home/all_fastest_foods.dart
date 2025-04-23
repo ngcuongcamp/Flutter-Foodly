@@ -5,7 +5,7 @@ import 'package:multivendor_food/common/app_style.dart';
 import 'package:multivendor_food/common/background_container.dart';
 import 'package:multivendor_food/common/shimmers/foodlist_shimmer.dart';
 import 'package:multivendor_food/constants/constants.dart';
-import 'package:multivendor_food/hooks/fetch_all_foods.dart';
+import 'package:multivendor_food/hooks/fetch_recommend_foods.dart';
 import 'package:multivendor_food/models/foods_model.dart';
 import 'package:multivendor_food/views/home/widgets/food_tile.dart';
 
@@ -14,7 +14,7 @@ class AllFastestFoods extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final hookResult = useFetchAllFoods("41007428");
+    final hookResult = useFetchRecommendFoods("41007428");
 
     List<FoodsModel> foodsList = hookResult.data;
     final isLoading = hookResult.isLoading;
@@ -33,17 +33,17 @@ class AllFastestFoods extends HookWidget {
       ),
       body: BackgroundContainer(
         color: Colors.white,
-        child: Padding(
-          padding: EdgeInsets.all(12.h),
-          child: isLoading
-              ? FoodsListShimmer()
-              : ListView(
+        child: isLoading
+            ? FoodsListShimmer()
+            : Padding(
+                padding: EdgeInsets.all(12.h),
+                child: ListView(
                   children: List.generate(foodsList.length, (i) {
                     FoodsModel food = foodsList[i];
                     return FoodTile(food: food);
                   }),
                 ),
-        ),
+              ),
       ),
     );
   }

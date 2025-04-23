@@ -42,9 +42,9 @@ module.exports = {
             // `aggregate` sử dụng để thực hiện phép toán phức tạp, nhận vào một mảng các giai đoạn (`stages`)
             let categories = await Category.aggregate([
                 // thực hiện giai đoạn 1, lọc ra các categories có giá trị `value` có giá trị khác `more`
-                { $match: { value: { $ne: "more" } } },
-                // giai đoạn 2: lấy ngẫu nhiên 4 docs từ kết quả của giai đoạn 1
-                { $sample: { size: 4 } }
+                { $match: { value: { $nin: ["more", "all"] } } },
+                // giai đoạn 2: lấy ngẫu nhiên 8 docs từ kết quả của giai đoạn 1
+                { $sample: { size: 8 } }
             ])
 
 
@@ -52,9 +52,16 @@ module.exports = {
             const moreCategory = await Category.findOne({ value: "more" }, { __v: 0 });
 
 
+            const allCategory = await Category.findOne({ value: "all" }, { __v: 0 });
+
+
             // nếu tìm thấy tài liệu `more`, thêm vào mảng categories
             if (moreCategory) {
                 categories.push(moreCategory);
+            }
+
+            if (allCategory) {
+                categories.unshift(allCategory);
             }
 
             res.status(200).json({

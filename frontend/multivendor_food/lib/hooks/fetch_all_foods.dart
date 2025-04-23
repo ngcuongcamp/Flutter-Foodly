@@ -6,7 +6,7 @@ import 'package:multivendor_food/models/hook_models/hook_result.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-FetchHook useFetchAllFoods(String code) {
+FetchHook useFetchAllFoods() {
   final foodsItems = useState<List<FoodsModel>?>([]);
   final isLoading = useState<bool>(false);
   final error = useState<Exception?>(null);
@@ -15,7 +15,7 @@ FetchHook useFetchAllFoods(String code) {
   Future<void> fetchData() async {
     isLoading.value = true;
     try {
-      Uri url = Uri.parse('$appBaseUrl/api/food/recommendation/$code');
+      Uri url = Uri.parse('$appBaseUrl/food');
       final response = await http.get(url);
       final jsonResponse = json.decode(response.body);
 
@@ -30,6 +30,7 @@ FetchHook useFetchAllFoods(String code) {
       } else {
         apiError.value = apiErrorModelFromJson(response.body);
       }
+      isLoading.value = false;
     } catch (e) {
       error.value = e is Exception ? e : Exception('Error: $e');
     } finally {
@@ -38,6 +39,7 @@ FetchHook useFetchAllFoods(String code) {
   }
 
   useEffect(() {
+    // Future.delayed(const Duration(seconds: 3));
     fetchData();
     return null;
   }, []);

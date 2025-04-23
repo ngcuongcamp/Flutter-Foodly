@@ -17,7 +17,7 @@ class FoodList extends HookWidget {
     final error = hookResult.error;
 
     return Container(
-      height: 192.h,
+      height: 220.h,
       padding: EdgeInsets.only(left: 12.w, top: 10.h),
       child: isLoading
           ? FoodsListShimmer()

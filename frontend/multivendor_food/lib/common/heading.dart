@@ -7,12 +7,10 @@ import 'package:multivendor_food/constants/constants.dart';
 
 class Heading extends StatelessWidget {
   final String text;
-  final void Function() onTap;
-  const Heading({
-    super.key,
-    required this.text,
-    required this.onTap,
-  });
+  final void Function()? onTap;
+  final bool? more;
+
+  const Heading({super.key, required this.text, this.onTap, this.more});
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +25,15 @@ class Heading extends StatelessWidget {
             child: ReusableText(
                 text: text, style: appStyle(16, kDark, FontWeight.bold)),
           ),
-          GestureDetector(
-              onTap: onTap,
-              child: Icon(
-                AntDesign.appstore1,
-                color: kSecondary,
-                size: 20.sp,
-              ))
+          more == null
+              ? GestureDetector(
+                  onTap: onTap,
+                  child: Icon(
+                    AntDesign.appstore1,
+                    color: kSecondary,
+                    size: 20.sp,
+                  ))
+              : const SizedBox.shrink()
         ],
       ),
     );

@@ -14,8 +14,8 @@ class MainScreen extends StatelessWidget {
 
   final List<Widget> pageList = [
     HomePage(),
-    CartPage(),
     SearchPage(),
+    CartPage(),
     ProfilePage()
   ];
 

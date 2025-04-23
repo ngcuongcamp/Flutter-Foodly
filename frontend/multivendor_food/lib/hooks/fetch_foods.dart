@@ -15,7 +15,7 @@ FetchHook useFetchFoods(String code) {
   Future<void> fetchData() async {
     isLoading.value = true;
     try {
-      Uri url = Uri.parse('$appBaseUrl/api/food/recommendation/$code');
+      Uri url = Uri.parse('$appBaseUrl/food/recommendation/$code');
       final response = await http.get(url);
       final jsonResponse = json.decode(response.body);
 
@@ -38,6 +38,7 @@ FetchHook useFetchFoods(String code) {
   }
 
   useEffect(() {
+    // Future.delayed(const Duration(seconds: 3));
     fetchData();
     return null;
   }, []);

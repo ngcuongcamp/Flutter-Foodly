@@ -32,7 +32,7 @@ mongoose.connect(process.env.MONGOURL)
 
 app.use("/", AuthRoute)
 
-app.use("/api/users", UserRoute)
+app.use("/api/user", UserRoute)
 app.use("/api/category", CategoryRoute)
 app.use("/api/restaurant", RestaurantRoute)
 app.use("/api/food", FoodRoute)

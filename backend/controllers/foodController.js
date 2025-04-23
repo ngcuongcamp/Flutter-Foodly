@@ -330,7 +330,6 @@ module.exports = {
     },
     getFoodsByCategoryAndCode: async (req, res) => {
         const { categoryId, code } = req.params
-        console.log(categoryId, code)
 
         try {
             const foods = await Food.aggregate([
