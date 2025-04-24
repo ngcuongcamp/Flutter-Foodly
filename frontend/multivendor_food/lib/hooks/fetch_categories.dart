@@ -7,7 +7,6 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 FetchHook useFetchCategories() {
-  // final categoriesItems = useState<List<CategoriesModel>?>(null);
   final categoriesItems = useState<List<CategoriesModel>?>([]);
   final isLoading = useState<bool>(false);
   final error = useState<Exception?>(null);

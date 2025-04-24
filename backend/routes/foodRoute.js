@@ -15,18 +15,21 @@ router.put('/removeTags/:id', foodController.removeTagsFood)
 router.put('/updateTags/:id', foodController.updateTagsFood)
 
 
-
 // search by Food Id
 router.get("/byId/:id", foodController.getFoodById)
 // search by Food title
 router.get('/search/:searchTitle', foodController.searchFood)
 
 // get Food by RestaurantId, CategoryId and Code
-router.get("/restaurant-foods/:restaurantId", foodController.getFoodsByRestaurant)
+router.get("/restaurant-foods/:restaurantId", foodController.getFoodsByRestaurantId)
 router.get("/restaurant-foods/:categoryId/:code", foodController.getFoodsByCategoryAndCode)
 
 // get All foods by code
 router.get('/byCode/:code', foodController.getAllFoodsByCode)
+
+// get foods by categoryId 
+router.get('/byCategoryId/:categoryId', foodController.getFoodsByCategoryId)
+
 
 // get random
 router.get("/recommendation/:code", foodController.getRandomFood)

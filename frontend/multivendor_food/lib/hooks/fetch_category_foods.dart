@@ -7,7 +7,7 @@ import 'package:multivendor_food/models/foods_model.dart';
 import 'package:multivendor_food/models/hook_models/hook_result.dart';
 import 'package:http/http.dart' as http;
 
-FetchHook useFetchCategoryFoods(String idCategory, String? code) {
+FetchHook useFetchCategoryFoods(String idCategory) {
   final foodsItems = useState<List<FoodsModel>?>([]);
   final isLoading = useState<bool>(false);
   final error = useState<Exception?>(null);
@@ -17,13 +17,11 @@ FetchHook useFetchCategoryFoods(String idCategory, String? code) {
     isLoading.value = true;
 
     try {
-      Uri url =
-          Uri.parse('$appBaseUrl/food/restaurant-foods/$idCategory/$code');
+      // print('Fetching data for category: $idCategory');
+      Uri url = Uri.parse('$appBaseUrl/food/byCategoryId/$idCategory');
 
       final response = await http.get(url);
       final jsonResponse = json.decode(response.body);
-
-      print("json: $jsonResponse");
 
       if (response.statusCode == 200) {
         if (jsonResponse['status'] == true && jsonResponse['data'] is List) {
@@ -46,10 +44,11 @@ FetchHook useFetchCategoryFoods(String idCategory, String? code) {
   }
 
   useEffect(() {
-    Future.delayed(const Duration(seconds: 3));
-    fetchData();
+    // print('useEffect triggered with idCategory: $idCategory');
+    Future.delayed(const Duration(milliseconds: 100), fetchData);
+    // fetchData();
     return null;
-  }, []);
+  }, [idCategory]);
 
   void refetch() {
     isLoading.value = true;

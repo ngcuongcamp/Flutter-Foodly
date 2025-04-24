@@ -20,7 +20,7 @@ class FoodTile extends StatelessWidget {
         children: [
           Container(
             margin: EdgeInsets.only(bottom: 8.h),
-            height: 90.h,
+            height: 115.h,
             width: width,
             decoration: BoxDecoration(
               color: kOffWhite,
@@ -36,7 +36,7 @@ class FoodTile extends StatelessWidget {
                     child: Stack(
                       children: [
                         SizedBox(
-                          height: 70.h,
+                          height: 90.h,
                           width: 70.w,
                           child: Image.network(
                             food.imageUrl.first,
@@ -89,7 +89,7 @@ class FoodTile extends StatelessWidget {
                             )),
                         SizedBox(
                           width: width * 0.7,
-                          height: 20.h,
+                          height: 25.h,
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             itemCount: food.additives.length,
@@ -126,7 +126,7 @@ class FoodTile extends StatelessWidget {
             top: 6.h,
             child: Container(
               width: 60.w,
-              height: 20.h,
+              height: 25.h,
               decoration: BoxDecoration(
                 color: kPrimary,
                 borderRadius: BorderRadius.circular(10.r),
@@ -144,8 +144,8 @@ class FoodTile extends StatelessWidget {
             child: GestureDetector(
               onTap: () {},
               child: Container(
-                width: 20.w,
-                height: 20.h,
+                width: 25.w,
+                height: 25.h,
                 decoration: BoxDecoration(
                     color: kSecondary,
                     // borderRadius: BorderRadius.circular(10.r),

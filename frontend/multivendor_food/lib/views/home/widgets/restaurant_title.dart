@@ -20,7 +20,7 @@ class RestaurantTile extends StatelessWidget {
         children: [
           Container(
             margin: EdgeInsets.only(bottom: 8.h),
-            height: 90.h,
+            height: 115.h,
             width: width,
             decoration: BoxDecoration(
               color: kOffWhite,
@@ -36,7 +36,7 @@ class RestaurantTile extends StatelessWidget {
                     child: Stack(
                       children: [
                         SizedBox(
-                          height: 70.h,
+                          height: 90.h,
                           width: 70.w,
                           child: Image.network(
                             restaurant.imageUrl,
@@ -109,7 +109,7 @@ class RestaurantTile extends StatelessWidget {
             top: 6.h,
             child: Container(
               width: 60.w,
-              height: 20.h,
+              height: 25.h,
               decoration: BoxDecoration(
                 color: restaurant.isAvailable == true ||
                         restaurant.isAvailable == null

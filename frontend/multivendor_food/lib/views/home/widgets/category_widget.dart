@@ -10,7 +10,6 @@ import 'package:multivendor_food/views/categories/all_categories.dart';
 
 class CategoryWidget extends StatelessWidget {
   final controller = Get.put(CategoryController());
-  // final Map<String, dynamic> category;
   final CategoriesModel category;
 
   CategoryWidget({super.key, required this.category});
@@ -29,6 +28,7 @@ class CategoryWidget extends StatelessWidget {
           controller.updateCategory = category.id;
           controller.updateTitle = category.title;
         }
+        print(controller.categoryValue); // changed!
       },
       child: Obx(
         () => Container(
@@ -48,20 +48,14 @@ class CategoryWidget extends StatelessWidget {
               SizedBox(
                 height: 35.h,
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(
-                      5.r), // Đảm bảo ảnh cũng có bán kính tương tự
+                  borderRadius: BorderRadius.circular(5.r),
                   child: Container(
                     decoration: BoxDecoration(
-                      // border: Border.all(
-                      //     color: kSecondary,
-                      //     width: .5.w), // Thêm viền cho ảnh
-                      borderRadius:
-                          BorderRadius.circular(8.r), // Thêm bán kính cho viền
+                      borderRadius: BorderRadius.circular(8.r),
                     ),
                     child: Image.network(
                       category.imageUrl,
-                      fit: BoxFit
-                          .cover, // Đảm bảo ảnh bao phủ toàn bộ không gian
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),

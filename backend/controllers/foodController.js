@@ -267,7 +267,7 @@ module.exports = {
             if (code) {
                 randomFood = await Food.aggregate([
                     { $match: { code: code, isAvailable: true } },
-                    { $sample: { size: 5 } },
+                    { $sample: { size: 10 } },
                     { $project: { __v: 0 } }
                 ])
             }
@@ -275,7 +275,7 @@ module.exports = {
             if (randomFood.length === 0) {
                 randomFood = await Food.aggregate([
                     { $match: { isAvailable: true } },
-                    { $sample: { size: 5 } },
+                    { $sample: { size: 10 } },
                     { $project: { __v: 0 } }
                 ])
             }
@@ -307,15 +307,39 @@ module.exports = {
         }
     },
 
-    getFoodsByRestaurant: async (req, res) => {
-        const restaurantId = new mongoose.Types.ObjectId(req.params.restaurantId)
+
+    // get foods by Category Id
+    getFoodsByCategoryId: async (req, res) => {
+        const categoryId = req.params.categoryId;
+        console.log(categoryId)
         try {
-            // const food = await Food.find({ restaurant: restaurantId })
+            const foodList = await Food.find({ category: categoryId });
+            return res.status(200).json({
+                status: true,
+                message: "Get foods by category id successful",
+                data: foodList
+            })
+
+        } catch (error) {
+            return res.status(500).json({
+                status: false,
+                message: error.message
+            })
+        }
+    },
+
+    getFoodsByRestaurantId: async (req, res) => {
+        const restaurantId = new mongoose.Types.ObjectId(req.params.restaurantId)
+
+
+        try {
             const food = await Food.aggregate([
-                { $match: { restaurant: restaurantId, isAvailable: true } },
+                { $match: { category: restaurantId, isAvailable: true } },
                 { $project: { __v: 0 } }
             ]
             );
+
+            console.log('food', food)
 
             res.status(200).json({
                 status: true, data: food, message: 'Get food by restaurant is successful!'

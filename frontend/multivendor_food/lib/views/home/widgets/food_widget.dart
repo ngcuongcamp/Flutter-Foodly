@@ -26,7 +26,7 @@ class FoodWidget extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.only(right: 25.w),
           child: Container(
-            width: width * 0.75,
+            width: width * 0.65,
             height: 180.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12.r),
@@ -40,11 +40,11 @@ class FoodWidget extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(12.r),
                     child: SizedBox(
-                      height: 120.h,
-                      width: width * 0.8,
+                      height: 150.h,
+                      width: width * 0.9,
                       child: Image.network(
                         image,
-                        fit: BoxFit.fitWidth,
+                        fit: BoxFit.fitHeight,
                       ),
                     ),
                   ),

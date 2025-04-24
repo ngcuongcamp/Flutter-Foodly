@@ -12,4 +12,7 @@ class CategoryController extends GetxController {
   set updateTitle(String value) {
     _title.value = value;
   }
+
+  RxString get category => _category;
+  RxString get title => _title;
 }

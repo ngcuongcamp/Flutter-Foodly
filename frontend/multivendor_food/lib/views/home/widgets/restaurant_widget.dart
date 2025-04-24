@@ -30,7 +30,7 @@ class RestaurantsWidget extends StatelessWidget {
           padding: EdgeInsets.only(right: 25.w),
           child: Container(
             width: width * 0.75,
-            height: 192.h,
+            height: 200.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12.r),
               color: kLightWhite,
@@ -45,7 +45,7 @@ class RestaurantsWidget extends StatelessWidget {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(12.r),
                         child: SizedBox(
-                          height: 112.h,
+                          height: 170.h,
                           width: width * 0.8,
                           child: Image.network(
                             image,
@@ -61,8 +61,8 @@ class RestaurantsWidget extends StatelessWidget {
                             child: Image.network(
                               logo,
                               fit: BoxFit.cover,
-                              width: 20.w,
-                              height: 20.h,
+                              width: 25.w,
+                              // height: 20.h,
                             )),
                       )
                     ],

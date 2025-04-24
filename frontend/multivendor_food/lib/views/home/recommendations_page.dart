@@ -34,7 +34,8 @@ class Recommendations extends HookWidget {
       body: BackgroundContainer(
         color: Colors.white,
         child: Padding(
-          padding: EdgeInsets.all(12.h),
+          padding:
+              EdgeInsets.only(left: 12.h, right: 12.h, top: 14.h, bottom: 14.h),
           child: isLoading
               ? FoodsListShimmer()
               : ListView(

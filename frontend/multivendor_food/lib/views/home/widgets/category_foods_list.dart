@@ -8,7 +8,6 @@ import 'package:multivendor_food/controllers/category_controller.dart';
 import 'package:multivendor_food/hooks/fetch_all_foods.dart';
 import 'package:multivendor_food/hooks/fetch_category_foods.dart';
 import 'package:multivendor_food/models/foods_model.dart';
-import 'package:multivendor_food/models/hook_models/hook_result.dart';
 import 'package:multivendor_food/views/home/widgets/food_tile.dart';
 
 class CategoryFoodsList extends HookWidget {
@@ -16,18 +15,36 @@ class CategoryFoodsList extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(CategoryController());
+    final controller = Get.find<CategoryController>();
 
-    late final FetchHook hookResult;
-    if (controller.titleValue == "All") {
-      hookResult = useFetchAllFoods();
-    } else {
-      hookResult = useFetchCategoryFoods(controller.categoryValue, "");
-    }
+    // Dùng useState để lưu category & title
+    final categoryId = useState(controller.categoryValue);
+    final title = useState(controller.titleValue);
 
-    List<FoodsModel> foodsList = hookResult.data;
+    // Theo dõi thay đổi từ controller
+    useEffect(() {
+      final categoryListener = ever<String>(controller.category, (val) {
+        categoryId.value = val;
+      });
+
+      final titleListener = ever<String>(controller.title, (val) {
+        title.value = val;
+      });
+
+      // Cleanup listeners khi widget unmount
+      return () {
+        categoryListener();
+        titleListener();
+      };
+    }, []);
+
+    // Chọn hook tương ứng
+    final hookResult = title.value == "All"
+        ? useFetchAllFoods()
+        : useFetchCategoryFoods(categoryId.value);
+
     final isLoading = hookResult.isLoading;
-    final error = hookResult.error;
+    final foodsList = hookResult.data;
 
     return SizedBox(
       width: width,
