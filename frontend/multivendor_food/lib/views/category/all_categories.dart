@@ -8,7 +8,7 @@ import 'package:multivendor_food/constants/constants.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:multivendor_food/hooks/fetch_all_categories.dart';
 import 'package:multivendor_food/models/categories_model.dart';
-import 'package:multivendor_food/views/categories/category_tile.dart';
+import 'package:multivendor_food/views/category/category_tile.dart';
 
 class AllCategories extends HookWidget {
   const AllCategories({super.key});
@@ -19,21 +19,22 @@ class AllCategories extends HookWidget {
 
     List<CategoriesModel> categoriesList = hookResult.data;
     final isLoading = hookResult.isLoading;
-    final error = hookResult.error;
+    // final error = hookResult.error;
 
     return Scaffold(
       appBar: AppBar(
-          elevation: 0,
-          backgroundColor: kOffWhite,
-          centerTitle: true,
-          title: ReusableText(
-            text: 'All Categories',
-            style: appStyle(
-              12,
-              kGray,
-              FontWeight.w600,
-            ),
-          )),
+        elevation: 0,
+        backgroundColor: kOffWhite,
+        centerTitle: true,
+        title: ReusableText(
+          text: 'All Categories',
+          style: appStyle(
+            12,
+            kGray,
+            FontWeight.w600,
+          ),
+        ),
+      ),
       body: BackgroundContainer(
         color: Colors.white,
         child: Container(

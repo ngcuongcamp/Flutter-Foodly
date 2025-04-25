@@ -44,7 +44,7 @@ module.exports = {
                 // thực hiện giai đoạn 1, lọc ra các categories có giá trị `value` có giá trị khác `more`
                 { $match: { value: { $nin: ["more", "all"] } } },
                 // giai đoạn 2: lấy ngẫu nhiên 8 docs từ kết quả của giai đoạn 1
-                { $sample: { size: 8 } }
+                { $sample: { size: 4 } }
             ])
 
 

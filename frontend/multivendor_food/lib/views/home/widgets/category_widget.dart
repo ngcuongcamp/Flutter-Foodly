@@ -6,7 +6,7 @@ import 'package:multivendor_food/common/reusable_text.dart';
 import 'package:multivendor_food/constants/constants.dart';
 import 'package:multivendor_food/controllers/category_controller.dart';
 import 'package:multivendor_food/models/categories_model.dart';
-import 'package:multivendor_food/views/categories/all_categories.dart';
+import 'package:multivendor_food/views/category/all_categories.dart';
 
 class CategoryWidget extends StatelessWidget {
   final controller = Get.put(CategoryController());

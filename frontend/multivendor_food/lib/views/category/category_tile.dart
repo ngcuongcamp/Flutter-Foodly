@@ -4,8 +4,9 @@ import 'package:get/get.dart';
 import 'package:multivendor_food/common/app_style.dart';
 import 'package:multivendor_food/common/reusable_text.dart';
 import 'package:multivendor_food/constants/constants.dart';
+import 'package:multivendor_food/controllers/category_controller.dart';
 import 'package:multivendor_food/models/categories_model.dart';
-import 'package:multivendor_food/views/categories/category_page.dart';
+import 'package:multivendor_food/views/category/category_page.dart';
 
 class CategoryTile extends StatelessWidget {
   const CategoryTile({
@@ -17,8 +18,12 @@ class CategoryTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(CategoryController());
+
     return ListTile(
       onTap: () {
+        controller.updateCategory = category.id;
+        controller.updateTitle = category.title;
         Get.to(
           () => const CategoryPage(),
           transition: Transition.fadeIn,
