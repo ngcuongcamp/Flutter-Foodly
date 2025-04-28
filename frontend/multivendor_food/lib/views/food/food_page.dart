@@ -6,11 +6,13 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:get/get.dart';
 import 'package:multivendor_food/common/app_style.dart';
 import 'package:multivendor_food/common/custom_button.dart';
+import 'package:multivendor_food/common/custom_text_field.dart';
 import 'package:multivendor_food/common/reusable_text.dart';
 import 'package:multivendor_food/constants/constants.dart';
 import 'package:multivendor_food/controllers/food_controller.dart';
 import 'package:multivendor_food/hooks/fetch_restaurant_by_id.dart';
 import 'package:multivendor_food/models/foods_model.dart';
+import 'package:multivendor_food/views/auth/phone_verification_page.dart';
 import 'package:multivendor_food/views/restaurant/restaurant_page.dart';
 
 class FoodPage extends StatefulWidget {
@@ -26,9 +28,11 @@ class FoodPage extends StatefulWidget {
 
 class _FoodPageState extends State<FoodPage> {
   final PageController _pageController = PageController();
+  final TextEditingController _preferences = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(FoodController());
+    controller.loadAdditives(widget.food.additives);
 
     return Scaffold(
       body: HookBuilder(builder: (context) {
@@ -115,9 +119,7 @@ class _FoodPageState extends State<FoodPage> {
                 ],
               ),
             ),
-
-            // title
-            Container(
+            Padding(
               padding: EdgeInsets.only(left: 14.w, top: 12.h, right: 14.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,10 +131,13 @@ class _FoodPageState extends State<FoodPage> {
                         text: widget.food.title,
                         style: appStyle(18, kDark, FontWeight.w600),
                       ),
-                      ReusableText(
-                        text: "\$${widget.food.price.toString()}",
-                        style: appStyle(16, kPrimary, FontWeight.w600),
-                      ),
+                      Obx(
+                        () => ReusableText(
+                          text:
+                              "\$${((widget.food.price + controller.additivePrice) * controller.count.value).toStringAsFixed(2)}",
+                          style: appStyle(16, kPrimary, FontWeight.w600),
+                        ),
+                      )
                     ],
                   ),
                   SizedBox(height: 10.h),
@@ -161,10 +166,10 @@ class _FoodPageState extends State<FoodPage> {
                             child: Center(
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
-                                    horizontal: 6.w, vertical: 2.h),
+                                    horizontal: 4.w, vertical: 2.h),
                                 child: ReusableText(
                                   text: tag,
-                                  style: appStyle(11, kWhite, FontWeight.w400),
+                                  style: appStyle(9, kWhite, FontWeight.w400),
                                 ),
                               ),
                             ),
@@ -177,39 +182,41 @@ class _FoodPageState extends State<FoodPage> {
                     style: appStyle(16, kDark, FontWeight.w600),
                   ),
                   SizedBox(height: 15.h),
-                  Column(
-                    children:
-                        List.generate(widget.food.additives.length, (index) {
-                      final additive = widget.food.additives[index];
-                      return CheckboxListTile(
-                        contentPadding: EdgeInsets.zero,
-                        visualDensity: VisualDensity.compact,
-                        dense: true,
-                        activeColor: kSecondary,
-                        value: true,
-                        tristate: false,
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            ReusableText(
-                              text: additive.title,
-                              style: appStyle(11, kDark, FontWeight.w400),
+                  Obx(() => Column(
+                        children: List.generate(controller.additivesList.length,
+                            (index) {
+                          final additive = controller.additivesList[index];
+                          return CheckboxListTile(
+                            contentPadding: EdgeInsets.zero,
+                            visualDensity: VisualDensity.compact,
+                            dense: true,
+                            activeColor: kSecondary,
+                            value: additive.isChecked.value,
+                            tristate: false,
+                            title: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                ReusableText(
+                                  text: additive.title,
+                                  style: appStyle(11, kDark, FontWeight.w400),
+                                ),
+                                SizedBox(
+                                  width: 5.w,
+                                ),
+                                ReusableText(
+                                  text: "\$ ${additive.price.toString()}",
+                                  style:
+                                      appStyle(11, kPrimary, FontWeight.w600),
+                                ),
+                              ],
                             ),
-                            SizedBox(
-                              width: 5.w,
-                            ),
-                            ReusableText(
-                              text: "\$ ${additive.price.toString()}",
-                              style: appStyle(11, kPrimary, FontWeight.w600),
-                            ),
-                          ],
-                        ),
-                        onChanged: (bool? value) {
-                          print(value);
-                        },
-                      );
-                    }),
-                  ),
+                            onChanged: (bool? value) {
+                              additive.toggleChecked();
+                              controller.getTotalPrice();
+                            },
+                          );
+                        }),
+                      )),
                   SizedBox(height: 20.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -222,24 +229,90 @@ class _FoodPageState extends State<FoodPage> {
                       Row(
                         children: [
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              controller.increament();
+                            },
                             child: const Icon(AntDesign.pluscircleo),
                           ),
                           Padding(
                             padding:
-                                const EdgeInsets.symmetric(horizontal: 12.0),
-                            child: ReusableText(
-                                text: "1",
-                                style: appStyle(14, kDark, FontWeight.w600)),
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: Obx(() => ReusableText(
+                                text: controller.currentCount.toString(),
+                                style: appStyle(14, kDark, FontWeight.w600))),
                           ),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              controller.decreament();
+                            },
                             child: const Icon(AntDesign.minuscircleo),
                           )
                         ],
                       )
                     ],
-                  )
+                  ),
+                  SizedBox(height: 20.h),
+                  ReusableText(
+                    text: "Preferences",
+                    style: appStyle(16, kDark, FontWeight.w600),
+                  ),
+                  SizedBox(
+                    height: 15.h,
+                  ),
+                  SizedBox(
+                    child: CustomTextWidget(
+                      controller: _preferences,
+                      hintText: "Add a note with your preferences",
+                      maxLines: 3,
+                      fontSize: 10,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15.h,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        height: 45.h,
+                        width: 150.w,
+                        alignment: Alignment.centerRight,
+                        decoration: BoxDecoration(
+                            color: kPrimary,
+                            borderRadius: BorderRadius.circular(30.r)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                showVerificationSheet(context);
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                                child: ReusableText(
+                                  text: "Place Order",
+                                  style: appStyle(
+                                      16, kLightWhite, FontWeight.w600),
+                                  isCenter: true,
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {},
+                              child: CircleAvatar(
+                                  backgroundColor: kSecondary,
+                                  radius: 20.r,
+                                  child: Icon(
+                                    Ionicons.cart,
+                                    color: kLightWhite,
+                                  )),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20.h),
                 ],
               ),
             )
@@ -247,5 +320,66 @@ class _FoodPageState extends State<FoodPage> {
         );
       }),
     );
+  }
+
+  Future<dynamic> showVerificationSheet(BuildContext context) {
+    return showModalBottomSheet(
+        context: context,
+        showDragHandle: true,
+        builder: (BuildContext context) {
+          return Container(
+            height: 600.h,
+            width: width,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/restaurant_bk.png"),
+                  fit: BoxFit.fill,
+                ),
+                color: kLightWhite,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(12.r),
+                  topRight: Radius.circular(12.r),
+                )),
+            child: Padding(
+              padding: EdgeInsets.all(8.h),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10.h),
+                  ReusableText(
+                    text: "Verify Your Phone Number",
+                    style: appStyle(18, kPrimary, FontWeight.w600),
+                  ),
+                  SizedBox(
+                      height: 300.h,
+                      child: Column(
+                        children:
+                            List.generate(verificationReasons.length, (index) {
+                          return ListTile(
+                            leading: const Icon(
+                              Icons.check_circle,
+                              color: kPrimary,
+                            ),
+                            title: Text(
+                              verificationReasons[index],
+                              style: appStyle(11, kGray, FontWeight.normal),
+                              textAlign: TextAlign.center,
+                            ),
+                          );
+                        }),
+                      )),
+                  CustomButton(
+                    text: "Verify Phone Number",
+                    btnHeight: 35.h,
+                    color: kPrimary,
+                    onTap: () {
+                      Get.to(() => const PhoneVerificationPage());
+                    },
+                  )
+                ],
+              ),
+            ),
+          );
+        });
   }
 }

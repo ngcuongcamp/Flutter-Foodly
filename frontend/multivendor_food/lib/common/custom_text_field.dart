@@ -14,6 +14,8 @@ class CustomTextWidget extends StatelessWidget {
     this.validator,
     this.prefixIcon,
     this.hintText,
+    this.maxLines,
+    this.fontSize,
   });
 
   final TextInputType? keyboardType;
@@ -24,6 +26,8 @@ class CustomTextWidget extends StatelessWidget {
   final Widget? prefixIcon;
   final String? Function(String?)? validator;
   final String? hintText;
+  final int? maxLines;
+  final double? fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +38,7 @@ class CustomTextWidget extends StatelessWidget {
             border: Border.all(color: kGray, width: 0.4),
             borderRadius: BorderRadius.circular(9.r)),
         child: TextFormField(
+          maxLines: maxLines ?? 1,
           controller: controller,
           keyboardType: keyboardType,
           onEditingComplete: onEditingComplete,
@@ -44,7 +49,7 @@ class CustomTextWidget extends StatelessWidget {
           decoration: InputDecoration(
             border: InputBorder.none,
             hintText: hintText,
-            hintStyle: appStyle(11, kDark, FontWeight.normal),
+            hintStyle: appStyle((fontSize ?? 11), kGray, FontWeight.normal),
             suffixIcon: suffixIcon,
             prefixIcon: prefixIcon,
           ),
