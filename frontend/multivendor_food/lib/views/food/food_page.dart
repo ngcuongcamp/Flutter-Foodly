@@ -230,9 +230,9 @@ class _FoodPageState extends State<FoodPage> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              controller.increament();
+                              controller.decreament();
                             },
-                            child: const Icon(AntDesign.pluscircleo),
+                            child: const Icon(AntDesign.minuscircleo),
                           ),
                           Padding(
                             padding:
@@ -243,10 +243,10 @@ class _FoodPageState extends State<FoodPage> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              controller.decreament();
+                              controller.increament();
                             },
-                            child: const Icon(AntDesign.minuscircleo),
-                          )
+                            child: const Icon(AntDesign.pluscircleo),
+                          ),
                         ],
                       )
                     ],

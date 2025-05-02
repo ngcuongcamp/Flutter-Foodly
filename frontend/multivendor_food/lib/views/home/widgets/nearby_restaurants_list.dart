@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:multivendor_food/common/shimmers/foodlist_shimmer.dart';
 import 'package:multivendor_food/hooks/fetch_restaurants.dart';
 import 'package:multivendor_food/models/restaurantsModel.dart';
 import 'package:multivendor_food/views/home/widgets/restaurant_widget.dart';
+import 'package:multivendor_food/views/restaurant/restaurant_page.dart';
 
 class NearbyRestaurantsList extends HookWidget {
   const NearbyRestaurantsList({super.key});
@@ -14,7 +16,7 @@ class NearbyRestaurantsList extends HookWidget {
     final hookResult = useFetchRestaurants("41007428");
     List<RestaurantsModel> restaurantList = hookResult.data;
     final isLoading = hookResult.isLoading;
-    final error = hookResult.error;
+    // final error = hookResult.error;
 
     return Container(
       height: 280.h,
@@ -31,7 +33,9 @@ class NearbyRestaurantsList extends HookWidget {
                   title: restaurant.title,
                   time: restaurant.time,
                   rating: restaurant.ratingCount,
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => RestaurantPage(restaurant: restaurant));
+                  },
                 );
               }),
             ),

@@ -329,17 +329,16 @@ module.exports = {
     },
 
     getFoodsByRestaurantId: async (req, res) => {
-        const restaurantId = new mongoose.Types.ObjectId(req.params.restaurantId)
-
 
         try {
+            const restaurantId = new mongoose.Types.ObjectId(req.params.restaurantId)
             const food = await Food.aggregate([
-                { $match: { category: restaurantId, isAvailable: true } },
+                { $match: { restaurant: restaurantId, isAvailable: true } },
                 { $project: { __v: 0 } }
             ]
             );
-
-            console.log('food', food)
+	    
+	    console.log('food: ', food);
 
             res.status(200).json({
                 status: true, data: food, message: 'Get food by restaurant is successful!'

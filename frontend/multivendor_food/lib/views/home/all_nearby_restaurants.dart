@@ -18,7 +18,7 @@ class AllNearbyRestaurants extends HookWidget {
 
     List<RestaurantsModel> restaurantsList = hookResult.data;
     final isLoading = hookResult.isLoading;
-    final error = hookResult.error;
+    // final error = hookResult.error;
 
     return Scaffold(
       backgroundColor: kSecondary,

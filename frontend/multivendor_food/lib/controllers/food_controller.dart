@@ -60,7 +60,6 @@ class FoodController extends GetxController {
     }
 
     setTotalPrice = totalPrice;
-    print("Total Price: $totalPrice");
     return totalPrice;
   }
 }

@@ -21,7 +21,7 @@ router.get("/byId/:id", foodController.getFoodById)
 router.get('/search/:searchTitle', foodController.searchFood)
 
 // get Food by RestaurantId, CategoryId and Code
-router.get("/restaurant-foods/:restaurantId", foodController.getFoodsByRestaurantId)
+router.get("/byRestaurantId/:restaurantId", foodController.getFoodsByRestaurantId)
 router.get("/restaurant-foods/:categoryId/:code", foodController.getFoodsByCategoryAndCode)
 
 // get All foods by code
