@@ -25,7 +25,12 @@ class ProfileTileWidget extends StatelessWidget {
         size: 18,
       ),
       title: ReusableText(
-          text: title, style: appStyle(11, kGray, FontWeight.normal)),
+          text: title,
+          style: appStyle(
+            11,
+            kGray,
+            FontWeight.normal,
+          )),
       trailing: title != "Settings"
           ? const Icon(
               AntDesign.right,

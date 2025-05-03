@@ -1,1 +1,2 @@
 flutter run -d web-server
+flutter run -d web-server --web-renderer html

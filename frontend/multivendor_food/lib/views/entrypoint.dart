@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:multivendor_food/controllers/tab_index_controller.dart';
+import 'package:multivendor_food/views/auth/login_page.dart';
 import 'package:multivendor_food/views/cart/cart_page.dart';
 import 'package:multivendor_food/views/home/home_page.dart';
-import 'package:multivendor_food/views/profile/ProfilePage.dart';
+import 'package:multivendor_food/views/profile/profile_page.dart';
 import 'package:multivendor_food/views/search/search_page.dart';
 import '../constants/constants.dart';
 
@@ -17,6 +18,7 @@ class MainScreen extends StatelessWidget {
     SearchPage(),
     CartPage(),
     ProfilePage()
+    // LoginPage()
   ];
 
   @override
@@ -43,20 +45,19 @@ class MainScreen extends StatelessWidget {
                     items: [
                       BottomNavigationBarItem(
                           icon: controller.tabIndex == 0
-                              ? Icon(AntDesign.appstore1)
-                              : Icon(AntDesign.appstore_o),
+                              ? Icon(AntDesign.appstore1, size: 20)
+                              : Icon(AntDesign.appstore_o, size: 20),
                           label: 'Home'),
                       BottomNavigationBarItem(
-                          icon: Icon(Icons.search), label: 'Search'),
+                          icon: Icon(Icons.search, size: 20), label: 'Search'),
                       BottomNavigationBarItem(
                           icon: Badge(
-                              label: Text('1'),
-                              child: Icon(FontAwesome.opencart)),
+                              child: Icon(FontAwesome.opencart, size: 20)),
                           label: 'Cart'),
                       BottomNavigationBarItem(
                           icon: controller.tabIndex == 3
-                              ? Icon(FontAwesome.user_circle)
-                              : Icon(FontAwesome.user_circle_o),
+                              ? Icon(FontAwesome.user_circle, size: 20)
+                              : Icon(FontAwesome.user_circle_o, size: 20),
                           label: 'Profile'),
                     ],
                   ),
