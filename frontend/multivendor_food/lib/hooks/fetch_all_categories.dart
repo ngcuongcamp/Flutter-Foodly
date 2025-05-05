@@ -18,7 +18,7 @@ FetchHook useAllFetchCategories() {
   Future<void> fetchData() async {
     isLoading.value = true;
     try {
-      Uri url = Uri.parse('$appBaseUrl/category');
+      Uri url = Uri.parse('$appBaseUrl/api/category');
       final response = await http.get(url);
       final jsonResponse = json.decode(response.body);
 

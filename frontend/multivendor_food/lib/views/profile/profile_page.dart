@@ -6,15 +6,16 @@ import 'package:multivendor_food/common/custom_button.dart';
 import 'package:multivendor_food/common/custom_container.dart';
 import 'package:multivendor_food/common/profile_app_bar.dart';
 import 'package:multivendor_food/constants/constants.dart';
+import 'package:multivendor_food/controllers/login_controller.dart';
 import 'package:multivendor_food/views/auth/login_redirect.dart';
 import 'package:multivendor_food/views/profile/widget/profile_tile_widget.dart';
-import 'package:multivendor_food/views/profile/widget/user_info_widget.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(LoginController());
     return Scaffold(
       backgroundColor: kPrimary,
       appBar: PreferredSize(
@@ -95,7 +96,9 @@ class ProfilePage extends StatelessWidget {
               height: 20.h,
             ),
             CustomButton(
-              onTap: () {},
+              onTap: () {
+                controller.logout();
+              },
               color: kRed,
               text: "Logout",
               border: 0,

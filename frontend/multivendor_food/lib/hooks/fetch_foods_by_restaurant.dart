@@ -18,7 +18,7 @@ FetchHook useFetchFoodsByRestaurant(String idRestaurant) {
 
     try {
       // print('Fetching data for category: $idRestaurant');
-      Uri url = Uri.parse('$appBaseUrl/food/byRestaurantId/$idRestaurant');
+      Uri url = Uri.parse('$appBaseUrl/api/food/byRestaurantId/$idRestaurant');
 
       final response = await http.get(url);
       final jsonResponse = json.decode(response.body);

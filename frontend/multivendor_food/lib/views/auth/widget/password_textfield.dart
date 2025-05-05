@@ -46,7 +46,7 @@ class PasswordTextField extends StatelessWidget {
           },
           style: appStyle(14, kGray, FontWeight.normal),
           decoration: InputDecoration(
-              hintText: "Enter your password",
+              hintText: "Password",
               // hintStyle: ,
               prefixIcon: const Icon(
                 CupertinoIcons.lock_circle,

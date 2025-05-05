@@ -112,7 +112,7 @@ class _FoodPageState extends State<FoodPage> {
                                 restaurant: hookResult.data,
                               ));
                         },
-                        btnWidth: 120.w,
+                        btnWidth: 125.w,
                         text: "Explore Restaurant",
                         color: kSecondary),
                   ),
@@ -143,13 +143,13 @@ class _FoodPageState extends State<FoodPage> {
                   SizedBox(height: 10.h),
                   Text(
                     widget.food.description,
-                    style: appStyle(11, kGray, FontWeight.w400),
+                    style: appStyle(13, kGray, FontWeight.w400),
                     maxLines: 8,
                     textAlign: TextAlign.justify,
                   ),
                   SizedBox(height: 15.h),
                   SizedBox(
-                    height: 35.h,
+                    height: 30.h,
                     child: ListView(
                         scrollDirection: Axis.horizontal,
                         children:
@@ -166,10 +166,10 @@ class _FoodPageState extends State<FoodPage> {
                             child: Center(
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
-                                    horizontal: 4.w, vertical: 2.h),
+                                    horizontal: 10.w, vertical: 2.h),
                                 child: ReusableText(
                                   text: tag,
-                                  style: appStyle(9, kWhite, FontWeight.w400),
+                                  style: appStyle(10, kWhite, FontWeight.w400),
                                 ),
                               ),
                             ),
@@ -274,7 +274,7 @@ class _FoodPageState extends State<FoodPage> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Container(
-                        height: 45.h,
+                        height: 40.h,
                         width: 150.w,
                         alignment: Alignment.centerRight,
                         decoration: BoxDecoration(
@@ -288,11 +288,11 @@ class _FoodPageState extends State<FoodPage> {
                                 showVerificationSheet(context);
                               },
                               child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                                padding: EdgeInsets.symmetric(horizontal: 6.w),
                                 child: ReusableText(
                                   text: "Place Order",
                                   style: appStyle(
-                                      16, kLightWhite, FontWeight.w600),
+                                      14, kLightWhite, FontWeight.w600),
                                   isCenter: true,
                                 ),
                               ),
@@ -301,10 +301,11 @@ class _FoodPageState extends State<FoodPage> {
                               onTap: () {},
                               child: CircleAvatar(
                                   backgroundColor: kSecondary,
-                                  radius: 20.r,
+                                  radius: 18.r,
                                   child: Icon(
                                     Ionicons.cart,
                                     color: kLightWhite,
+                                    size: 16.sp,
                                   )),
                             )
                           ],

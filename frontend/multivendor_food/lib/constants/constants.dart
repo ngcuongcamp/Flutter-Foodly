@@ -19,7 +19,7 @@ const kOffWhite = Color(0xffF3F4F8);
 double height = 825.h;
 double width = 375.w;
 
-const String appBaseUrl = "http://localhost:6013/api";
+const String appBaseUrl = "http://localhost:6013";
 
 final List<String> verificationReasons = [
   'Real-time Updates: Get instant notifications about your order status.',

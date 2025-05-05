@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:multivendor_food/common/app_style.dart';
 import 'package:multivendor_food/constants/constants.dart';
 
-class EmailTextField extends StatelessWidget {
-  const EmailTextField({
+class UsernameTextfield extends StatelessWidget {
+  const UsernameTextfield({
     super.key,
     this.onEditingComplete,
     this.keyboardType,
@@ -33,19 +33,19 @@ class EmailTextField extends StatelessWidget {
       controller: controller,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Please enter your email address';
-        } else if (!RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
-            .hasMatch(value)) {
-          return 'Please enter a valid email address';
+          return 'Please enter your username';
+        } else if (!RegExp(r'^[a-zA-Z0-9._]{3,20}$').hasMatch(value)) {
+          return 'Please enter a valid username value';
         }
         return null;
       },
       style: appStyle(14, kGray, FontWeight.normal),
       decoration: InputDecoration(
-          hintText: "Email address",
+          hintText: "Username",
           // hintStyle: ,
           prefixIcon: const Icon(
-            CupertinoIcons.mail,
+            // Icons.person_outline,
+            CupertinoIcons.person_circle,
             color: kGrayLight,
             size: 22,
           ),

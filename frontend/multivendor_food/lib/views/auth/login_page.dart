@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -6,6 +5,8 @@ import 'package:lottie/lottie.dart';
 import 'package:multivendor_food/common/app_style.dart';
 import 'package:multivendor_food/common/background_container.dart';
 import 'package:multivendor_food/common/custom_button.dart';
+import 'package:multivendor_food/controllers/login_controller.dart';
+import 'package:multivendor_food/models/login_model.dart';
 import 'package:multivendor_food/views/auth/widget/email_textfield.dart';
 import 'package:multivendor_food/common/reusable_text.dart';
 import 'package:multivendor_food/constants/constants.dart';
@@ -25,6 +26,8 @@ class _LoginPageState extends State<LoginPage> {
       TextEditingController();
 
   final FocusNode _passwordFocusNode = FocusNode();
+
+  LoginController controller = LoginController();
 
   @override
   void dispose() {
@@ -117,9 +120,18 @@ class _LoginPageState extends State<LoginPage> {
                       CustomButton(
                         text: "L O G I N",
                         onTap: () {
-                          Get.to(() => const LoginPage(),
-                              transition: Transition.cupertino,
-                              duration: const Duration(milliseconds: 900));
+                          if (_emailController.text.isNotEmpty &&
+                              _passwordController.text.length >= 8) {
+                            LoginModel model = LoginModel(
+                                email: _emailController.text,
+                                password: _passwordController.text);
+
+                            String data = loginModelToJson(model);
+                            print(data);
+
+                            // login function
+                            controller.loginFunction(data);
+                          }
                         },
                         btnHeight: 35.h,
                         btnWidth: width - 20,

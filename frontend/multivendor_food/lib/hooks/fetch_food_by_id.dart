@@ -15,7 +15,7 @@ FetchHook useFetchFoodById(String id) {
   Future<void> fetchData() async {
     isLoading.value = true;
     try {
-      Uri url = Uri.parse('$appBaseUrl/food/byId/$id');
+      Uri url = Uri.parse('$appBaseUrl/api/food/byId/$id');
       final response = await http.get(url);
       final jsonResponse = json.decode(response.body);
 

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:multivendor_food/common/app_style.dart';
 import 'package:multivendor_food/common/reusable_text.dart';
 import 'package:multivendor_food/constants/constants.dart';
 import 'package:multivendor_food/models/restaurantsModel.dart';
-import 'package:multivendor_food/views/restaurant/restaurant_page.dart';
 
 class RestaurantTile extends StatelessWidget {
   const RestaurantTile({super.key, required this.restaurant});
@@ -39,7 +37,7 @@ class RestaurantTile extends StatelessWidget {
                       children: [
                         SizedBox(
                           height: 90.h,
-                          width: 70.w,
+                          width: 100.w,
                           child: Image.network(
                             restaurant.imageUrl,
                             fit: BoxFit.cover,

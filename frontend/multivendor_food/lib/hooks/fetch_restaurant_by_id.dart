@@ -18,7 +18,7 @@ FetchRestaurant useFetchRestaurantById(String id) {
   Future<void> fetchData() async {
     isLoading.value = true;
     try {
-      Uri url = Uri.parse('$appBaseUrl/restaurant/byId/$id');
+      Uri url = Uri.parse('$appBaseUrl/api/restaurant/byId/$id');
       final response = await http.get(url);
       final jsonResponse = json.decode(response.body);
 

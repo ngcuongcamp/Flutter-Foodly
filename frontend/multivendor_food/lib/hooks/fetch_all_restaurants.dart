@@ -18,7 +18,7 @@ FetchHook useFetchAllRestaurants(String code) {
   Future<void> fetchData() async {
     isLoading.value = true;
     try {
-      Uri url = Uri.parse('$appBaseUrl/restaurant/getAll/$code');
+      Uri url = Uri.parse('$appBaseUrl/api/restaurant/getAll/$code');
       final response = await http.get(url);
       final jsonResponse = json.decode(response.body);
 
