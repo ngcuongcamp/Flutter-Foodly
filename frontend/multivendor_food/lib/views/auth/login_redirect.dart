@@ -9,6 +9,7 @@ import 'package:multivendor_food/common/custom_container.dart';
 import 'package:multivendor_food/common/reusable_text.dart';
 import 'package:multivendor_food/constants/constants.dart';
 import 'package:multivendor_food/views/auth/login_page.dart';
+import 'package:multivendor_food/views/auth/register_page.dart';
 
 class LoginRedirect extends StatelessWidget {
   const LoginRedirect({super.key});
@@ -66,7 +67,18 @@ class LoginRedirect extends StatelessWidget {
               },
               btnHeight: 35.h,
               btnWidth: width - 20,
-            )
+            ),
+            SizedBox(height: 20.h),
+            CustomButton(
+                text: "R E G I S T E R",
+                onTap: () {
+                  Get.to(() => const RegisterPage(),
+                      transition: Transition.cupertino,
+                      duration: const Duration(milliseconds: 900));
+                },
+                btnHeight: 35.h,
+                btnWidth: width - 20,
+                color: kSecondary)
           ],
         )),
       ),

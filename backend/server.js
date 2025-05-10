@@ -31,15 +31,14 @@ mongoose.connect(process.env.MONGOURL)
 // sendEmail()
 
 app.use("/", AuthRoute)
-
-app.use("/api/user", UserRoute)
 app.use("/api/category", CategoryRoute)
 app.use("/api/restaurant", RestaurantRoute)
 app.use("/api/food", FoodRoute)
 app.use("/api/rating", RatingRoute)
 app.use("/api/address", AddressRoute)
 app.use("/api/cart", CartRoute)
-app.use("/api/order/", OrderRoute)
+app.use("/api/order", OrderRoute)
+app.use("/api/users", UserRoute)
 
 
 // app.listen(port, "0.0.0.0", () => {

@@ -32,8 +32,8 @@ class CustomTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.all(6.h),
-        padding: EdgeInsets.only(left: 6.h),
+        margin: EdgeInsets.all(2.h),
+        padding: EdgeInsets.only(left: 2.h),
         decoration: BoxDecoration(
             border: Border.all(color: kGray, width: 0.4),
             borderRadius: BorderRadius.circular(9.r)),

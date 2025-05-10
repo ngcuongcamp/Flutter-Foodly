@@ -28,6 +28,7 @@ class RegistrationController extends GetxController {
       if (response.statusCode == 201) {
         var data = successModelFromJson(response.body);
         setLoading = false;
+        Get.back();
 
         Get.snackbar("You are successfully registered", data.message,
             colorText: kLightWhite,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:multivendor_food/controllers/tab_index_controller.dart';
-import 'package:multivendor_food/views/auth/login_page.dart';
 import 'package:multivendor_food/views/cart/cart_page.dart';
 import 'package:multivendor_food/views/home/home_page.dart';
 import 'package:multivendor_food/views/profile/profile_page.dart';

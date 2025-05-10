@@ -47,11 +47,11 @@ class UserInfoWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           ReusableText(
-                              text: user!.username ?? "Username",
-                              style: appStyle(12, kGray, FontWeight.w600)),
+                              text: user!.username,
+                              style: appStyle(14, kGray, FontWeight.w600)),
                           ReusableText(
-                              text: user!.email ?? "emaiil@eemail.gsdfjh",
-                              style: appStyle(10, kGray, FontWeight.normal)),
+                              text: user!.email,
+                              style: appStyle(11, kGray, FontWeight.normal)),
                         ],
                       ),
                     )

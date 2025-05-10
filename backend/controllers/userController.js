@@ -1,6 +1,8 @@
 const User = require('../models/User')
 const CryptoJS = require('crypto-js')
 
+const jwt = require('jsonwebtoken')
+
 
 module.exports = {
     getUserById: async (req, res) => {
@@ -81,7 +83,7 @@ module.exports = {
                 userType: req.body.userType || "Client",
                 otp: req.body.otp || "none",
                 password: CryptoJS.AES.encrypt(req.body.password, process.env.SECRET).toString(),
-                phone: req.body.phone || "0123456789",
+                phone: req.body.phone || "",
                 verification: req.body.verification || false,
                 phoneVerification: req.body.phoneVerification || false,
 
@@ -134,16 +136,23 @@ module.exports = {
                     message: 'User not found'
                 })
             }
+
+            console.log(userOtp, user.otp)
+
             if (userOtp === user.otp) {
                 user.verification = true;
                 user.otp = "none";
                 await user.save()
 
+                const userToken = jwt.sign({
+                    id: user._id,
+                    userType: user.userType,
+                    email: user.email
+                }, process.env.JWT_SECRET, { expiresIn: "21d" })
+
                 const { password, __v, otp, createAt, ...others } = user._doc
                 return res.status(200).json({
-                    status: true,
-                    message: 'Account verified successfully',
-                    userData: others
+                    ...others, userToken
                 })
             }
             else {
@@ -164,7 +173,6 @@ module.exports = {
 
     verifyPhone: async (req, res) => {
         const phone = req.params.phone;
-
         try {
             const user = await User.findById(req.user.id)
 
@@ -178,11 +186,16 @@ module.exports = {
             user.phone = phone;
             await user.save()
 
+            const userToken = jwt.sign({
+                id: user._id,
+                userType: user.userType,
+                email: user.email
+            }, process.env.JWT_SECRET, { expiresIn: "21d" })
+
             const { password, __v, otp, createAt, ...others } = user._doc
+
             return res.status(200).json({
-                status: true,
-                message: 'Account verified successfully',
-                userData: others
+                ...others, userToken
             })
         }
         catch (error) {

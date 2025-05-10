@@ -329,7 +329,7 @@ class _FoodPageState extends State<FoodPage> {
         showDragHandle: true,
         builder: (BuildContext context) {
           return Container(
-            height: 600.h,
+            // height: 600.h,
             width: width,
             decoration: BoxDecoration(
                 image: DecorationImage(
@@ -343,17 +343,20 @@ class _FoodPageState extends State<FoodPage> {
                 )),
             child: Padding(
               padding: EdgeInsets.all(8.h),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: 10.h),
-                  ReusableText(
-                    text: "Verify Your Phone Number",
-                    style: appStyle(18, kPrimary, FontWeight.w600),
-                  ),
-                  SizedBox(
-                      height: 300.h,
-                      child: Column(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(height: 10.h),
+                    ReusableText(
+                      text: "Verify Your Phone Number",
+                      style: appStyle(18, kPrimary, FontWeight.w600),
+                    ),
+                    Flexible(
+                      child: SizedBox(
+                          // height: 300.h,
+                          child: Column(
                         children:
                             List.generate(verificationReasons.length, (index) {
                           return ListTile(
@@ -369,15 +372,17 @@ class _FoodPageState extends State<FoodPage> {
                           );
                         }),
                       )),
-                  CustomButton(
-                    text: "Verify Phone Number",
-                    btnHeight: 35.h,
-                    color: kPrimary,
-                    onTap: () {
-                      Get.to(() => const PhoneVerificationPage());
-                    },
-                  )
-                ],
+                    ),
+                    CustomButton(
+                      text: "Verify Phone Number",
+                      btnHeight: 35.h,
+                      color: kPrimary,
+                      onTap: () {
+                        Get.to(() => const PhoneVerificationPage());
+                      },
+                    )
+                  ],
+                ),
               ),
             ),
           );

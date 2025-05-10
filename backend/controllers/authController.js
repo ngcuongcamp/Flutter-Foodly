@@ -41,6 +41,8 @@ module.exports = {
             // SAVE USER 
             await newUser.save()
             // SEND OTP TO EMAIL
+
+            console.log('Generate OTP: ', newUser.otp)
             // sendEmail(newUser.email, newUser.otp)
 
             res.status(201).json({ status: true, message: "User created successfully!" })

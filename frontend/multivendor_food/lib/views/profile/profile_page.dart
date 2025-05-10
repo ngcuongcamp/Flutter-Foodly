@@ -7,15 +7,45 @@ import 'package:multivendor_food/common/custom_container.dart';
 import 'package:multivendor_food/common/profile_app_bar.dart';
 import 'package:multivendor_food/constants/constants.dart';
 import 'package:multivendor_food/controllers/login_controller.dart';
+import 'package:multivendor_food/models/login_response.dart';
 import 'package:multivendor_food/views/auth/login_redirect.dart';
+import 'package:multivendor_food/views/auth/verification_page.dart';
 import 'package:multivendor_food/views/profile/widget/profile_tile_widget.dart';
+import 'package:get_storage/get_storage.dart';
+
+import 'widget/user_info_widget.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    LoginResponse? user;
+
     final controller = Get.put(LoginController());
+
+    final box = GetStorage();
+
+    String? token = box.read('token');
+
+    // nếu đã đăng nhập
+    if (token != null) {
+      user = controller.getUserInfo();
+    }
+
+    // nếu chưa đăng nhập thì chuyển tới page login
+    if (token == null) {
+      return const LoginRedirect();
+    }
+
+    // nếu đã lấy được dữ liệu user và tài khoản chưa xác thực
+    // thì chuyển tới page xác thực
+    if (user != null && user.verification == false) {
+      return const VerificationPage();
+    }
+
+    // nếu tài khoản đã được xác thực rồi và đăng nhập rồi
+
     return Scaffold(
       backgroundColor: kPrimary,
       appBar: PreferredSize(
@@ -26,10 +56,10 @@ class ProfilePage extends StatelessWidget {
           child: CustomContainer(
         containerContent: Column(
           children: [
-            // const UserInfoWidget(),
+            UserInfoWidget(user: user),
             SizedBox(height: 10.h),
             Container(
-                height: 200.h,
+                height: 220.h,
                 decoration: const BoxDecoration(color: kLightWhite),
                 child: ListView(
                   padding: EdgeInsets.zero,
@@ -63,7 +93,7 @@ class ProfilePage extends StatelessWidget {
               height: 15.h,
             ),
             Container(
-              height: 200.h,
+              height: 220.h,
               decoration: const BoxDecoration(color: kLightWhite),
               child: ListView(
                 padding: EdgeInsets.zero,
@@ -102,7 +132,10 @@ class ProfilePage extends StatelessWidget {
               color: kRed,
               text: "Logout",
               border: 0,
-            )
+            ),
+            SizedBox(
+              height: 40.h,
+            ),
           ],
         ),
       )),
